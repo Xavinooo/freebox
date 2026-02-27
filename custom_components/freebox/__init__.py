@@ -5,12 +5,17 @@ from datetime import timedelta
 from freebox_api.exceptions import HttpRequestError
 
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import CONF_HOST, CONF_PORT, CONF_SCAN_INTERVAL, EVENT_HOMEASSISTANT_STOP
+from homeassistant.const import (
+    CONF_HOST,
+    CONF_PORT,
+    CONF_SCAN_INTERVAL,
+    EVENT_HOMEASSISTANT_STOP,
+)
 from homeassistant.core import Event, HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady
 from homeassistant.helpers.event import async_track_time_interval
 
-from .const import PLATFORMS, DEFAULT_SCAN_INTERVAL
+from .const import DEFAULT_SCAN_INTERVAL, PLATFORMS
 from .router import FreeboxConfigEntry, FreeboxRouter, get_api
 
 
@@ -30,7 +35,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: FreeboxConfigEntry) -> b
     scan_interval: int = entry.options.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL)
 
     entry.async_on_unload(
-        async_track_time_interval(hass, router.update_all, timedelta(seconds=scan_interval))
+        async_track_time_interval(
+            hass, router.update_all, timedelta(seconds=scan_interval)
+        )
     )
 
     entry.runtime_data = router
@@ -54,6 +61,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: FreeboxConfigEntry) -> b
 async def async_unload_entry(hass: HomeAssistant, entry: FreeboxConfigEntry) -> bool:
     """Unload a config entry."""
     return await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
+
 
 async def update_options_listener(hass: HomeAssistant, entry: ConfigEntry) -> None:
     """Handle options update."""

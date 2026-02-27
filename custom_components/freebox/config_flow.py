@@ -7,15 +7,21 @@ from typing import Any
 from freebox_api.exceptions import AuthorizationError, HttpRequestError
 import voluptuous as vol
 
-from homeassistant.config_entries import ConfigEntry, ConfigFlow, ConfigFlowResult, OptionsFlow
+from homeassistant.config_entries import (
+    ConfigEntry,
+    ConfigFlow,
+    ConfigFlowResult,
+    OptionsFlow,
+)
+from homeassistant.const import CONF_HOST, CONF_PORT, CONF_SCAN_INTERVAL
 from homeassistant.core import callback
-from homeassistant.const import CONF_HOST, CONF_PORT
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo
 
 from .const import CONF_SERVICE_USER_NAME, DEFAULT_SCAN_INTERVAL, DOMAIN
 from .router import get_api, get_hosts_list_if_supported
 
 _LOGGER = logging.getLogger(__name__)
+
 
 class FreeboxOptionsFlowHandler(OptionsFlow):
     """Handle a option flow."""
