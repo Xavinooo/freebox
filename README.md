@@ -1,7 +1,7 @@
 # freebox
 Better HomeAssistant freebox integration
 
-Forked from the [official Freebox Integration](https://www.home-assistant.io/integrations/freebox/), but the lack of maintainment and pull request validation, I've decided to fork it and do my own modification, specific to my need.
+Forked from the [official Freebox Integration](https://www.home-assistant.io/integrations/freebox/), but due to the lack of maintainment and pull request validation, I've decided to fork it and do my own modifications, specific to my need.
 
 ## Fix
 - Fix non reuse of service name
