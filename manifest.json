@@ -1,0 +1,13 @@
+{
+  "domain": "freebox",
+  "name": "Freebox - Enhanced by Xavinooo",
+  "codeowners": ["@hacf-fr", "@Quentame", "@Xavinooo"],
+  "config_flow": true,
+  "dependencies": ["ffmpeg"],
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "loggers": ["freebox_api"],
+  "requirements": ["freebox-api==1.3.0"],
+  "zeroconf": ["_fbx-api._tcp.local."],
+  "version": "1.0.1"
+}
